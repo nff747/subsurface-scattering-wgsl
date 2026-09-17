@@ -8,6 +8,7 @@ import {
   PRESET_MARBLE,
   PRESET_JADE,
   PRESET_WAX,
+  PRESET_MILK,
   separableSSSSShader,
   translucencyShader,
 } from '../src/index';
@@ -65,6 +66,7 @@ describe('Material Presets & Profile Configurations', () => {
     expect(PRESET_SKIN.scatteringDistance[0]).toBeGreaterThan(PRESET_SKIN.scatteringDistance[2]); // Red scatters further in skin
     expect(PRESET_JADE.scatteringDistance[1]).toBeGreaterThan(PRESET_JADE.scatteringDistance[0]); // Green scatters further in jade
     expect(PRESET_MARBLE.scatteringDistance[0]).toBeCloseTo(PRESET_MARBLE.scatteringDistance[1], 0.2); // Marble is isotropic white
+    expect(PRESET_MILK.scatteringDistance[0]).toBeGreaterThan(3.0); // High scattering distance
   });
 });
 
