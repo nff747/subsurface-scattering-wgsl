@@ -79,3 +79,11 @@ export const PRESET_WAX: SSSSProfile = {
   diffuseReflectance: [0.92, 0.88, 0.76],
   translucencyColor: [0.95, 0.75, 0.45],
 };
+
+export const PRESET_MILK: SSSSProfile = {
+  name: 'Whole Milk',
+  falloff: [0.95, 0.95, 0.9],
+  scatteringDistance: [3.45, 3.20, 2.80],
+  diffuseReflectance: [0.95, 0.94, 0.91],
+  translucencyColor: [0.98, 0.97, 0.95],
+};
