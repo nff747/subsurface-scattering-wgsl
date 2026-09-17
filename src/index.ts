@@ -9,6 +9,7 @@ export * from './math/kernel';
 export * from './core/SSSSPipeline';
 export * from './core/CPUReferenceDiffusion';
 export * from './core/ThreeSSSSPass';
+export * from './utils/color';
 
 export { separableSSSSShader } from './shaders/separableSSSS.wgsl';
 export { translucencyShader } from './shaders/translucency.wgsl';
