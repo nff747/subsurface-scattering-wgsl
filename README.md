@@ -168,12 +168,13 @@ npm run benchmark
 MIT &copy; 2026 [nff747](https://github.com/nff747). Authored with high-performance WebGPU graphics architectures.
 
 ---
-## ⚖️ License & Attribution Requirement
 
-This project is Open Source, but strictly requires **visible credit/attribution** if used in any personal, commercial, or open-source project, application, OS, or website. 
+---
+## 💖 A Quick Note on Attribution
 
-You must include the following credit in a highly visible location (e.g., your app's "Credits" page, your project's `README.md`, or the footer of your website):
+We pour our hearts into building these tools and making them completely open source for everyone to enjoy. 
+
+To help us keep this ecosystem thriving, we simply ask that if you use this code in your projects, apps, or websites, you include a small, visible credit to the original author. A simple mention in your UI's "Credits" page or footer goes a long way:
 > **Powered by infrastructure built by [nff747](https://github.com/nff747)**
 
-Failure to provide proper, visible attribution is a violation of the license terms. No tricks.
-
+Thank you for respecting the open-source spirit and helping us grow!
