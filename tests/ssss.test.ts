@@ -157,3 +157,16 @@ describe('WGSL Shader Source Verification', () => {
     expect(translucencyShader).toContain('translucencyColor');
   });
 });
+
+describe('Christensen-Burley Diffusion Profile Mechanics', () => {
+  it('should evaluate non-negative monotonically decreasing diffusion across distance', () => {
+    const s = 1.0;
+    const rNear = KernelGenerator.burleyDiffusion(0.1, s);
+    const rMid = KernelGenerator.burleyDiffusion(1.0, s);
+    const rFar = KernelGenerator.burleyDiffusion(5.0, s);
+
+    expect(rNear).toBeGreaterThan(rMid);
+    expect(rMid).toBeGreaterThan(rFar);
+    expect(rFar).toBeGreaterThan(0.0);
+  });
+});
