@@ -1,6 +1,6 @@
 /**
  * Headless CPU Reference Subsurface Diffusion Implementation.
- * Provides verifiable separable bilateral convolution for testing and CPU fallbacks.
+ * Provides verifiable separable bilateral convolution and translucency shadow penetration for testing and CPU fallbacks.
  */
 
 import { SSSSProfile, SSSSConfig } from '../types';
@@ -135,5 +135,24 @@ export class CPUReferenceDiffusion {
       height,
       data: output,
     };
+  }
+
+  /**
+   * Computes thin slab back-scattering translucency factor from shadow map depth penetration.
+   *
+   * @param surfaceDepth Distance of surface point from light source.
+   * @param shadowDepth Distance recorded in shadow map.
+   * @param thicknessScale Normalization factor for slab thickness.
+   * @param distortion Normal distortion offset.
+   */
+  public static computeTranslucency(
+    surfaceDepth: number,
+    shadowDepth: number,
+    thicknessScale: number = 1.0,
+    distortion: number = 0.1
+  ): number {
+    const thickness = Math.max(0.0, surfaceDepth - shadowDepth) * thicknessScale;
+    const trans = Math.exp(-thickness * (1.0 + distortion));
+    return Math.max(0.0, Math.min(1.0, trans));
   }
 }
