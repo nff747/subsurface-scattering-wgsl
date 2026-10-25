@@ -71,4 +71,22 @@ export class ThreeSSSSPass {
       kernelWeights: { value: this.kernelWeights },
     };
   }
+
+  /**
+   * Packs SSSS pipeline parameters into a 16-byte aligned Float32Array
+   * suitable for WebGPU uniform buffer dispatch.
+   */
+  public packUniformBuffer(direction: [number, number]): Float32Array {
+    // 8 floats = 32 bytes (16-byte aligned)
+    const buf = new Float32Array(8);
+    buf[0] = direction[0];
+    buf[1] = direction[1];
+    buf[2] = this.config.width;
+    buf[3] = this.config.height;
+    buf[4] = this.config.sssWidth;
+    buf[5] = this.config.maxDepthError;
+    buf[6] = this.config.cameraNear;
+    buf[7] = this.config.cameraFar;
+    return buf;
+  }
 }
