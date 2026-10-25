@@ -1,12 +1,22 @@
 /**
  * Separable Screen-Space Subsurface Scattering (SSSS) Kernel Generator.
  * Based on Jimenez et al. (SIGGRAPH 2009 / GPU Pro) and Burley (SIGGRAPH 2015).
- * Generates an energy-conserving 1D Gaussian sum kernel approximated across RGB channels.
+ * Generates an energy-conserving 1D Gaussian sum kernel approximated across RGB channels
+ * and Disney / Christensen-Burley normalized diffusion profiles.
  */
 
 import { SSSSProfile, DiffusionKernel } from '../types';
 
 export class KernelGenerator {
+  /**
+   * Evaluates Christensen-Burley (Disney 2015) normalized diffusion profile R(d).
+   * R(d) = (exp(-d) + exp(-d/3)) / (8 * PI * d)
+   */
+  public static burleyDiffusion(d: number, s: number): number {
+    const dist = Math.max(1e-4, d / Math.max(1e-4, s));
+    return (Math.exp(-dist) + Math.exp(-dist / 3.0)) / (8.0 * Math.PI * dist * s);
+  }
+
   /**
    * Generates a 1D discrete sampling kernel from an SSSS profile.
    * Uses importance sampling of Gaussian standard deviations to allocate sample offsets.
