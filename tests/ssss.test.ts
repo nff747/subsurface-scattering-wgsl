@@ -170,3 +170,28 @@ describe('Christensen-Burley Diffusion Profile Mechanics', () => {
     expect(rFar).toBeGreaterThan(0.0);
   });
 });
+
+describe('ThreeSSSSPass Uniform Buffer Packing', () => {
+  it('should pack 32-byte 16-byte aligned uniform buffer data', () => {
+    const pass = new ThreeSSSSPass({
+      width: 2560,
+      height: 1440,
+      sssWidth: 2.5,
+      maxDepthError: 0.02,
+      cameraNear: 0.5,
+      cameraFar: 200.0,
+    });
+
+    const packed = pass.packUniformBuffer([1.0, 0.0]);
+    expect(packed.length).toBe(8);
+    expect(packed.byteLength).toBe(32);
+    expect(packed[0]).toBe(1.0);
+    expect(packed[1]).toBe(0.0);
+    expect(packed[2]).toBe(2560);
+    expect(packed[3]).toBe(1440);
+    expect(packed[4]).toBeCloseTo(2.5, 5);
+    expect(packed[5]).toBeCloseTo(0.02, 5);
+    expect(packed[6]).toBeCloseTo(0.5, 5);
+    expect(packed[7]).toBeCloseTo(200.0, 5);
+  });
+});
