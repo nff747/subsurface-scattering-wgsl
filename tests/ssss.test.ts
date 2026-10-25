@@ -195,3 +195,20 @@ describe('ThreeSSSSPass Uniform Buffer Packing', () => {
     expect(packed[7]).toBeCloseTo(200.0, 5);
   });
 });
+
+describe('Translucency Depth Penetration', () => {
+  it('should compute non-negative transmittance decreasing with slab thickness', () => {
+    // Thin slab: surface at 5.0, shadow recorded at 4.9 (thickness = 0.1)
+    const tThin = CPUReferenceDiffusion.computeTranslucency(5.0, 4.9, 1.0);
+    // Thick slab: surface at 5.0, shadow recorded at 3.0 (thickness = 2.0)
+    const tThick = CPUReferenceDiffusion.computeTranslucency(5.0, 3.0, 1.0);
+
+    expect(tThin).toBeGreaterThan(tThick);
+    expect(tThin).toBeLessThanOrEqual(1.0);
+    expect(tThick).toBeGreaterThanOrEqual(0.0);
+
+    // Negative thickness (surface in front of shadow) -> clamped to 1.0 (full transmission)
+    const tInFront = CPUReferenceDiffusion.computeTranslucency(3.0, 5.0);
+    expect(tInFront).toBe(1.0);
+  });
+});
