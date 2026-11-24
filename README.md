@@ -1,5 +1,7 @@
 # ⚡ Subsurface Scattering WGSL
 
+[![Lunar Paradox](https://img.shields.io/badge/Organization-Lunar_Paradox-0a0e1a?style=for-the-badge&logo=probot&logoColor=d7b886)](https://lunarparadox.com)
+
 ![Subsurface Scattering WGSL](assets/banner.jpg)
 
 > **Real-Time Separable Screen-Space Subsurface Scattering (SSSS) & Translucency Engine in WebGPU / WGSL**  
@@ -139,3 +141,7 @@ Apache 2.0 &copy; 2026 [nff747](https://github.com/nff747). Authored with high-p
 ## License
 
 This project is licensed under the [Apache-2.0 License](LICENSE).
+
+---
+
+*A component of the [Lunar Paradox](https://lunarparadox.com) applied systems & graphics laboratory. Engineered by nff747.*
